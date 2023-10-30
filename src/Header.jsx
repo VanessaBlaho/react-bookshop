@@ -7,7 +7,7 @@ export default function Header(){
     <div className="header__sitename">
        <h1>The Strand</h1>
     </div>
-    <TopMenu/>
+    <TopMenu currentItem="about"/>
 </header>
     );
 }

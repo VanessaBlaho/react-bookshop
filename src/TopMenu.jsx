@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function TopMenu (){
+export default function TopMenu (props){
     const [open,setOpen]= useState(false);
    
     const  toggleMenu =() => {
@@ -11,8 +11,10 @@ export default function TopMenu (){
         <div className="top-menu">
         {open ? (
             <nav>
-            <a>link 1</a> 
-            <a>link 2</a>
+            <a className={`link ${props.currentItem === '' ? 'link--highlighted' : ''}`} href="#">Home</a>
+            <a className= {`link ${props.currentItem === 'about' ? 'link--highlighted' : ''}`} href="#about">About us</a>
+            <a className={`link ${props.currentItem === 'contact' ? 'link--highlighted' : ''}`} href="#contact">Contact</a>
+
             <div className="burger-icon" onClick={(toggleMenu)}>
              ☰</div>
              </nav>
