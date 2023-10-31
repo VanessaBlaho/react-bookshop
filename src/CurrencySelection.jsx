@@ -1,6 +1,7 @@
 import { useEffect, useState} from "react"
 
 export default function CurrencySelection(){
+    
 const [currencies, setCurrencies] = useState ([]);
 const [currency, setCurrency]= useState (['EUR']);
 const [exchangeRate, setExchangeRate] = useState(1);

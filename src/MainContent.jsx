@@ -1,4 +1,5 @@
 
+import Homepage from "./Homepage";
 import LoginForm from "./LoginForm";
 
 export default function MainContent(currentPage){
@@ -23,7 +24,7 @@ export default function MainContent(currentPage){
                     : ''
             }
     <LoginForm/>
-    
+    <Homepage/>
    
 </main>
     )
