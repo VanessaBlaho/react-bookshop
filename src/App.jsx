@@ -6,13 +6,21 @@ import Header from './Header'
 import Footer from './Footer'
 import MainContent from './MainContent'
 
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentPage, setCurrentPage] = useState('');
+
+
 
   return (
     <>
-    <Header/>
-   <MainContent/>
+    <Header 
+    currentPage ={ currentPage }
+    setCurrentPage = {setCurrentPage}
+    />
+   <MainContent 
+   currentPage = {currentPage}/>
+
     <Footer/>
 
 </>
