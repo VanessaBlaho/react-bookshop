@@ -1,25 +1,53 @@
-
+import { useContext, useState } from 'react';
 import CurrencySelection from './CurrencySelection';
-import './Header.scss'
-import TopMenu from './TopMenu';
+import './Header.scss';
 
-export default function Header({currentPage, setCurrentPage}){
+import SearchBox from './Searchbox';
+import TopMenu from './TopMenu';
+import context from './Context';
+import { Route, Routes } from 'react-router-dom';
+
+export default function Header({ currentPage, setCurrentPage }) {
 
     const currentMenuItem = 'contact';
 
-    return(
-    <header className="header">
-    <div className="header__sitename">
-       <h1>The Strand</h1>
-    </div>
-    
-    <CurrencySelection/>
-    <TopMenu 
-        currentPage = {currentPage}
-        setCurrentPage = {setCurrentPage}
-        currentItem = {currentMenuItem}
-    />
-   
-</header>
-    );
+    const [value, setValue] = useState('');
+
+    const { state, dispatch } = useContext(context);
+
+    const toggleLanguage = (ev) => {
+        dispatch(
+            {
+                type: 'language/set',
+                payload: state.language == 'en' ? 'cz' : 'en'
+            }
+        )
+    }
+
+    return (
+        <header className="header">
+            <div className="header__shop-name">The Strand</div>
+
+            <Routes>
+                <Route path="/about-us" element={ <SearchBox value={ value } setValue={ setValue } /> } />
+                <Route path="*" element="" />
+            </Routes>
+
+            <CurrencySelection />
+
+            <TopMenu
+                currentPage={ currentPage }
+                setCurrentPage={ setCurrentPage }
+                currentItem={ currentMenuItem }
+            />
+
+            <div
+                className="language-switch"
+                onClick={ toggleLanguage }
+            >
+                Language: { state.language }
+            </div>
+        </header>
+    )
+
 }

@@ -1,30 +1,30 @@
 
+import AboutUs from "./AboutUs";
+import BookDetail from "./BookDetail";
+import Contact from "./Contact";
 import Homepage from "./Homepage";
 import LoginForm from "./LoginForm";
+import { Routes, Route } from 'react-router-dom';
+import SubpageLayout from "./SubPageLayout";
+
 
 export default function MainContent(currentPage){
     return(
         <main className="app-box">
     <h1 className="app__headline">Welcome</h1>
-    {
-                currentPage === ''
-                    ? <h2>Welcome!!</h2>
-                    : ''
-            }
+    <Routes>
+        < Route path="/" element={<Homepage/>} />
 
-            {
-                currentPage === 'about'
-                    ? <h2>About us</h2>
-                    : ''
-            }
+        <Route path="/" element={ <SubpageLayout /> }>
+            < Route path="/about-us" element={<AboutUs/>}/>
+            < Route path="/contact-us" element={<Contact/>}/>
+            < Route path="/book/:id" element={<BookDetail/>}/>
+            <Route path="*" element="404: page not found" />
+        </Route>
+    </Routes>
 
-            {
-                currentPage === 'contact'
-                    ? <h2>Contact form</h2>
-                    : ''
-            }
     <LoginForm/>
-    <Homepage/>
+   
    
 </main>
     )

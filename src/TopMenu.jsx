@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom';
 
 export default function TopMenu ({
     currentPage,
@@ -15,39 +16,42 @@ export default function TopMenu ({
     const handleItemClick = (page) => {
         setCurrentPage(page);
     }
+    const location = useLocation();
+       console.log(location);
+
 
     return(
         <div className="top-menu">
+            
         {open ? (
             <nav>
-              <a 
-                className={ `link` + (currentPage === '' ? ' link--highlighted' : '') }
-                href="#"
-                onClick={ () => handleItemClick('') }
+              <Link 
+                className={ `link` + (location.pathname === '/' ? ' link--highlighted' : '') }
+                to="/"
               >
                 Home
-                </a>
-                <a 
-                  className={ `link` + (currentPage === 'about' ? ' link--highlighted' : '') }
-                  href="#about"
-                  onClick={ () => handleItemClick('about') }
+                </Link>
+                <Link
+                  className={ `link` + (location === '/about-us' ? ' link--highlighted' : '') }
+                  to="/about-us"
+    
                             >
                                 About us
-                            </a>
-                            <a
-                               className={ `link` + (currentPage === 'contact' ? ' link--highlighted' : '') }
-                                href="#contact"
-                                onClick={ () => handleItemClick('contact') }
+                            </Link>
+                            <Link
+                               className={ `link` + (location === 'contact-us' ? ' link--highlighted' : '') }
+                                to="/contact-us"
+            
                             >
                                 Contact
-                            </a>
-                            <a
-                               className={ `link` + (currentPage === 'login' ? ' link--highlighted' : '') }
-                                href="#login"
-                                onClick={ () => setCurrentPage('login') }
+                            </Link>
+                            <Link
+                               className={ `link` + (location === 'login' ? ' link--highlighted' : '') }
+                                to="/login"
+                                
                             >
                                 Login
-                            </a>
+                            </Link>
 
             <div className="burger-icon" onClick={(toggleMenu)}>
              ☰</div>
