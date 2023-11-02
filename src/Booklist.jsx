@@ -1,11 +1,13 @@
 import { useEffect, useState} from "react"
 
+
 export default function Booklist(){
     const [books, setBooks] = useState([ ]);
 
     const loadBookList = async () => {
         const response = await fetch ('https://classes.codingbootcamp.cz/assets/classes/books-api/latest-books.php?page='+ page)
      const data = await response.json();
+     console.log(data);
      setBooks(data);
     }
 
@@ -19,7 +21,9 @@ export default function Booklist(){
         <h2>Latest Books</h2>
         <ul>
             {books.map((book)=> (
-                <li key={book.id}>{book.title}</li>
+                <li key={book.id}>{book.title}
+                <p key ={book.id}>{book.author}</p>
+                </li>
                 
             ))}
         </ul>
